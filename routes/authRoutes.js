@@ -1,5 +1,5 @@
 const express = require('express');
-const { register } = require('../controllers/authController')
+const { register, login, refresh } = require('../controllers/authController')
 
 const router = express.Router();
 
@@ -9,5 +9,7 @@ const router = express.Router();
     // /refresh
 // router.post('/register', middleware de validation zod, register)
 router.post('/register', register)
+router.post('/login', login)
+router.post('/refresh', refresh)
 
 module.exports = router;

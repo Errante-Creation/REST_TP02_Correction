@@ -6,9 +6,13 @@ function findByEmail(email){
     return users.find(user => user.email === email)
 }
 
+function findByid(id){
+    return users.find(user => user.id === id)
+}
+
 function create(user){
     users.push(user);
     return user;
 }
 
-module.exports = { findByEmail, create }
+module.exports = { findByEmail, create, findByid }

@@ -14,12 +14,24 @@ async function register(req, res, next) {
     }
 }
 
-function login(req, res) {
-
+async function login(req, res, next) {
+    try {
+        // authService
+        const tokens = await authService.login(req.body)
+        return res.status(200).json(tokens)
+    } catch (error) {
+        return next(error)
+    }
 }
 
-function refresh(req, res) {
-
+function refresh(req, res, next) {
+    try {
+        const { refreshToken } = req.body
+        const result = authService.refresh(refreshToken)
+        return res.status(200).json(result)
+    } catch (error) {
+        return next(error)
+    }
 }
 
 module.exports = { register, login, refresh}
