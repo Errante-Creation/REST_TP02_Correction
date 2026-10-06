@@ -2,6 +2,12 @@ const express = require('express');
 const authRoutes = require('./routes/authRoutes')
 const userRoutes = require('./routes/userRoutes')
 
+// Utiliser express rate limit
+// → Configurer une limite d'utilisation par ip par minute
+// 100 appel toutes 15
+// 429 Too Many Requests
+// cors() → Indiquer explicitement QUI est autorisé à accéder à l'API
+
 const app = express();
 
 app.use(express.json({ limit: '16kb' }));
