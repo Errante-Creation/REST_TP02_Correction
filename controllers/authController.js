@@ -34,4 +34,22 @@ function refresh(req, res, next) {
     }
 }
 
-module.exports = { register, login, refresh}
+function me(req, res, next){
+    try {
+        const userId = req.user.sub;
+        const user = authService.findPublicUser(userId)
+
+        if(!user){
+            return res.status(404).json({
+                title: 'Utilisateur introuvable',
+                status: 404
+            })
+        }
+
+        return res.status(200).json(user);
+    } catch (error) {
+        return next(error)
+    }
+}
+
+module.exports = { register, login, refresh, me}

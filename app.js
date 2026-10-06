@@ -1,11 +1,15 @@
 const express = require('express');
 const authRoutes = require('./routes/authRoutes')
+const userRoutes = require('./routes/userRoutes')
 
 const app = express();
 
 app.use(express.json({ limit: '16kb' }));
 
-app.use('/api/v1/auth', authRoutes)
+// Routes
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/users', userRoutes);
+
 // Middleware d'interceiption 404 : déclenché si aucune route précédente ne correspond à la requête
 app.use((req, res) => res.status(404).json({title: 'Route introuvable', status: 404}))
 // Middleware global de gestion d'erreurs (identifié par ses 4 paramètres : err, req, res, next)

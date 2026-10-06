@@ -95,6 +95,11 @@ function refresh(token){
     }
 }
 
+function findPublicUser(id){
+    const user = users.findByid(id);
+    return user ? publicUser(user) : null;
+}
+
 function publicUser(user){
     return {
         id: user.id,
@@ -104,4 +109,4 @@ function publicUser(user){
     };
 }
 
-module.exports = { register, login, refresh }
+module.exports = { register, login, refresh, findPublicUser }
